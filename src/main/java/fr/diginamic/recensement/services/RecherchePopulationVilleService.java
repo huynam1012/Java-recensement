@@ -7,8 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
-import fr.diginamic.recensement.exceptions.FunctionalException;
-import fr.diginamic.recensement.exceptions.IllegalInputException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
 
 /**
  * Recherche et affichage de la population d'une ville
@@ -19,12 +18,12 @@ import fr.diginamic.recensement.exceptions.IllegalInputException;
 public class RecherchePopulationVilleService extends MenuService {
 
 	@Override
-	public void traiter(Recensement rec, Scanner scanner) throws FunctionalException {
+	public void traiter(Recensement rec, Scanner scanner) throws InvalidInputException {
 
 		System.out.println("Quel est le nom de la ville recherchée ? ");
 		String choix = scanner.nextLine();
 		if (StringUtils.isEmpty(choix)) {
-			throw new IllegalInputException("Le nom de la ville doit être renseigné.");
+			throw new InvalidInputException("Le nom de la ville doit être renseigné.");
 		}
 
 		List<Ville> villes = rec.getVilles();

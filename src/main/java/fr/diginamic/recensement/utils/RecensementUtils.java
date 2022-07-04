@@ -36,6 +36,7 @@ public class RecensementUtils {
 			return recensement;
 			
 		} catch (IOException e) {
+			throws new CsvFileNotFound
 			System.out.println(e.getMessage());
 			return null;
 		}

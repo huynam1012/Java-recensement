@@ -8,8 +8,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
-import fr.diginamic.recensement.exceptions.FunctionalException;
-import fr.diginamic.recensement.exceptions.NotNumberException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
 import fr.diginamic.recensement.services.comparators.EnsemblePopComparateur;
 
 /**
@@ -21,12 +20,12 @@ import fr.diginamic.recensement.services.comparators.EnsemblePopComparateur;
 public class RechercheVillesPlusPeupleesFrance extends MenuService {
 
 	@Override
-	public void traiter(Recensement recensement, Scanner scanner) throws FunctionalException {
+	public void traiter(Recensement recensement, Scanner scanner) throws InvalidInputException {
 
 		System.out.println("Veuillez saisir un nombre de villes:");
 		String nbVillesStr = scanner.nextLine();
 		if (!NumberUtils.isDigits(nbVillesStr)) {
-			throw new NotNumberException("Le nombre de villes doit être un entier.");
+			throw new InvalidInputException("Le nombre de villes doit être un entier.");
 		}
 		int nbVilles = Integer.parseInt(nbVillesStr);
 

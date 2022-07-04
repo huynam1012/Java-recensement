@@ -3,7 +3,8 @@ package fr.diginamic.recensement;
 import java.util.Scanner;
 
 import fr.diginamic.recensement.entites.Recensement;
-import fr.diginamic.recensement.exceptions.FunctionalException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
+import fr.diginamic.recensement.exceptions.UserException;
 import fr.diginamic.recensement.services.RechercheDepartementsPlusPeuplees;
 import fr.diginamic.recensement.services.RecherchePopulationBorneService;
 import fr.diginamic.recensement.services.RecherchePopulationDepartementService;
@@ -72,7 +73,11 @@ public class Application {
 					break;
 				case 4:
 					RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
-					recherchePopBorne.traiter(recensement, scanner);
+					try {
+						recherchePopBorne.traiter(recensement, scanner);
+					} catch (UserException e) {
+						System.err.println(e.getMessage());
+					}
 					break;
 				case 5:
 					RechercheVillesPlusPeupleesDepartement rechercheVillesPlusPeupleesDepartement = new RechercheVillesPlusPeupleesDepartement();
@@ -95,7 +100,7 @@ public class Application {
 					rechercheVillesPlusPeupleesFrance.traiter(recensement, scanner);
 					break;
 				}
-			} catch (FunctionalException e) {
+			} catch (InvalidInputException e) {
 				System.err.println(e.getMessage());
 			}
 
@@ -121,5 +126,6 @@ public class Application {
 		System.out.println("9. Rechercher les N plus grandes villes de France.");
 		System.out.println("99. Sortir");
 		System.out.print("Effectuez votre choix:");
+		
 	}
 }

@@ -3,7 +3,9 @@ package fr.diginamic.recensement.services;
 import java.util.Scanner;
 
 import fr.diginamic.recensement.entites.Recensement;
-import fr.diginamic.recensement.exceptions.FunctionalException;
+import fr.diginamic.recensement.exceptions.CodeDeptInvalideException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
+import fr.diginamic.recensement.exceptions.UserException;
 
 /**
  * Classe représentant un service
@@ -19,7 +21,8 @@ public abstract class MenuService {
 	 * 
 	 * @param lignes  lignes du fichier
 	 * @param scanner scanner
-	 * @throws FunctionalException exception jetée lorsque l'utilisateur effectue une mauvaise saisie
+	 * @throws UserException exception générée lorque l'utilisateur saisit n'importe
+	 *                       quoi
 	 */
-	public abstract void traiter(Recensement recensement, Scanner scanner) throws FunctionalException;
+	public abstract void traiter(Recensement recensement, Scanner scanner) throws UserException;
 }

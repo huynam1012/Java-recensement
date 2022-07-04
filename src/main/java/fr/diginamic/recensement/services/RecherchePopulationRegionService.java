@@ -7,8 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
-import fr.diginamic.recensement.exceptions.FunctionalException;
-import fr.diginamic.recensement.exceptions.IllegalInputException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
 
 /**
  * Recherche et affichage de la population d'une région
@@ -19,12 +18,12 @@ import fr.diginamic.recensement.exceptions.IllegalInputException;
 public class RecherchePopulationRegionService extends MenuService {
 
 	@Override
-	public void traiter(Recensement rec, Scanner scanner) throws FunctionalException {
+	public void traiter(Recensement rec, Scanner scanner) throws InvalidInputException {
 
 		System.out.println("Quel est le nom (ou le début de nom) de la région recherchée ? ");
 		String choix = scanner.nextLine();
 		if (StringUtils.isEmpty(choix)) {
-			throw new IllegalInputException("Le nom de la région doit être renseignée.");
+			throw new InvalidInputException("Le nom de la région doit être renseignée.");
 		}
 
 		List<Ville> villes = rec.getVilles();

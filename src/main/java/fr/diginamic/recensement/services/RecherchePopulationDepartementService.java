@@ -7,8 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
-import fr.diginamic.recensement.exceptions.FunctionalException;
-import fr.diginamic.recensement.exceptions.IllegalInputException;
+import fr.diginamic.recensement.exceptions.InvalidInputException;
 
 /** Recherche et affichage de la population d'un département
  * @author DIGINAMIC
@@ -17,12 +16,12 @@ import fr.diginamic.recensement.exceptions.IllegalInputException;
 public class RecherchePopulationDepartementService extends MenuService {
 
 	@Override
-	public void traiter(Recensement rec, Scanner scanner) throws FunctionalException {
+	public void traiter(Recensement rec, Scanner scanner) throws InvalidInputException {
 		
 		System.out.println("Quel est le code du département recherché ? ");
 		String choix = scanner.nextLine();
-		if (StringUtils.isEmpty(choix)) {
-			throw new IllegalInputException("Le code du département doit être renseigné.");
+		if (StringUtils.isEmpty(choix)) {//checks if a String contains text
+			throw new InvalidInputException("Le code du département doit être renseigné.");
 		}
 		
 		List<Ville> villes = rec.getVilles();
